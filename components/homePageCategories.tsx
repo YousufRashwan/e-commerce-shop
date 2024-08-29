@@ -6,7 +6,7 @@ export default function HomePageCategories({
   imageArray: { src: string; alt: string }[];
 }) {
   return (
-    <div className="w-full mb-4">
+    <div className="w-full mb-12">
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         <div className="col-span-2 md:col-span-3 row-span-2">
           <Image

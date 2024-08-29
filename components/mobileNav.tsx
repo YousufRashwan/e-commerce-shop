@@ -8,7 +8,7 @@ import {
 
 export default function MobileNav() {
   return (
-    <div className="sticky bottom-0">
+    <div className="lg:hidden sticky bottom-0">
       <nav className="flex justify-evenly bg-white py-3 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.25)] rounded-lg">
         <div className="flex flex-col items-center gap-1">
           <FontAwesomeIcon icon={faHouse} className="text-gray-500 w-6 h-6" />

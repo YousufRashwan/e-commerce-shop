@@ -33,7 +33,7 @@ export default function AdCarousel() {
           <CarouselItem key={index} className="basis-full">
             <Image
               src={`/adCarousel/carousel-item-${index + 1}.png`}
-              className="object-cover object-center w-full h-[180px] md:h-[300px]"
+              className="object-cover object-center w-full h-[180px] md:h-[300px] md:rounded-xl lg:h-[400px]"
               alt="El Shorouk"
               width="0"
               height="0"

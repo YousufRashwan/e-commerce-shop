@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="ar" dir="rtl">
       <body className={`${tajawal.className}`}>
         <Navbar />
-        {children}
+        <main>{children}</main>
         <Footer />
         <MobileNav />
       </body>

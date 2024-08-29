@@ -7,13 +7,13 @@ import Brands from "@/components/brands";
 
 export default function Home() {
   return (
-    <main className="">
-      <section className="flex justify-center mb-4">
+    <div className="lg:px-8 max-w-[1440px] mx-auto">
+      <section className="flex lg:hidden justify-center mb-4">
         <div className="w-full px-4">
           <Searchbar />
         </div>
       </section>
-      <section className="flex justify-center mb-4">
+      <section className="flex justify-center mt-2 mb-4">
         <div className="w-full px-4">
           <AdCarousel />
         </div>
@@ -28,7 +28,7 @@ export default function Home() {
           <HomeContTemp />
         </div>
       </section>
-      <section className="">
+      <section className="lg:hidden">
         <div className="bg-red-100">
           <ProductsAccordion />
         </div>
@@ -36,6 +36,6 @@ export default function Home() {
       <section>
         <Brands />
       </section>
-    </main>
+    </div>
   );
 }
