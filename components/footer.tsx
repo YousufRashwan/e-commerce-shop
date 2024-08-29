@@ -9,9 +9,9 @@ import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer>
-      <div className="flex justify-between gap-4 bg-[#3D3D3D] text-white lg:text-black lg:bg-red-100 py-5 px-4 lg:px-12">
-        <div className="max-w-[1440px]">
+    <footer className="bg-[#3D3D3D] lg:bg-red-100">
+      <div className="max-w-[1440px] m-auto flex justify-between gap-4  text-white lg:text-black py-5 px-4 lg:px-12">
+        <div>
           <h3 className="text-lg font-bold mb-4">تواصل معانا</h3>
           <ul className="mb-2">
             <li className="text-sm mb-1 font-semibold">
