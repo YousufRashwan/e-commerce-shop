@@ -8,7 +8,7 @@ export default function CategoriesLayout({
   return (
     <div className="flex h-[calc(calc(100vh)-150px)]">
       <Sidenav />
-      <div className="w-3/4">{children}</div>
+      <div className="w-3/4 overflow-y-scroll mb-4">{children}</div>
     </div>
   );
 }
