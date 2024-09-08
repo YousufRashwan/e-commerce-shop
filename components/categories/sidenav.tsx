@@ -1,28 +1,35 @@
-"use client";
+import { createClient } from "contentful";
+import { notFound } from "next/navigation";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { getCategoryLinks } from "@/app/lib/data";
+import NavLink from "@/components/categories/navLink";
 
-export default function Sidenav() {
-  const pathname = usePathname();
-  const links = getCategoryLinks();
+export async function getLinks() {
+  const client = createClient({
+    space: process.env.CONTENTFUL_SPACE_ID,
+    accessToken: process.env.CONTENTFUL_ACCESS_KEY,
+  });
+
+  const res = await client.getEntries({ content_type: "productCategories" });
+  const links = res.items.map((res) => {
+    const link = {
+      name: res.fields.categoryPageName,
+      link: res.fields.categoryPageSlug,
+    };
+    return link;
+  });
+
+  if (!links.length) {
+    notFound();
+  }
+  return links;
+}
+
+export default async function Sidenav() {
+  const links = await getLinks();
   return (
     <nav className="w-1/4 h-full bg-gray-200 text-center overflow-y-scroll mb-4">
       {links.map((link) => {
-        return (
-          <Link key={link.href} href={link.href}>
-            <div
-              className={`text-sm p-4 px-2 border-b-[1px] border-gray-300 transition-colors
-            ${
-              link.href === pathname &&
-              "border-l-4 border-l-red-800 bg-white text-black"
-            }`}
-            >
-              {link.name}
-            </div>
-          </Link>
-        );
+        return <NavLink key={link.link} {...link} />;
       })}
     </nav>
   );

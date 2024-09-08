@@ -1,5 +1,5 @@
 import Searchbar from "@/components/searchbar";
-import AdCarousel from "@/components/adCarousel";
+import AdCarouselGallery from "@/components/adCarouselGallery";
 import CategoryCarousel from "@/components/categoryCarousel";
 import HomeContTemp from "@/components/homeContTemp";
 import ProductsAccordion from "@/components/productsAccordion";
@@ -17,7 +17,7 @@ export default function Home() {
         </section>
         <section className="flex justify-center mt-2 mb-4">
           <div className="w-full px-4">
-            <AdCarousel />
+            <AdCarouselGallery />
           </div>
         </section>
         <section className="flex overflow-hidden mb-8">

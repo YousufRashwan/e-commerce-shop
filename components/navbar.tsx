@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import DesktopCategories from "@/components/categories/desktopCategories";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartShopping,
@@ -59,6 +61,11 @@ export default function Navbar() {
           </div>
         </div>
       </nav>
+      <div className="bg-gray-100">
+        <div className="px-20 max-w-[1440px] mx-auto">
+          <DesktopCategories />
+        </div>
+      </div>
     </header>
   );
 }

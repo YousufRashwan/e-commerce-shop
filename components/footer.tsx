@@ -10,11 +10,11 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="bg-[#3D3D3D] lg:bg-red-100">
-      <div className="max-w-[1440px] m-auto flex justify-between gap-4  text-white lg:text-black py-5 px-4 lg:px-12">
+      <div className="max-w-[1440px] m-auto flex justify-between gap-4 text-white lg:text-black py-5 px-4 lg:px-12 lg:text-lg">
         <div>
           <h3 className="text-lg font-bold mb-4">تواصل معانا</h3>
           <ul className="mb-2">
-            <li className="text-sm mb-1 font-semibold">
+            <li className=" mb-1 font-semibold">
               <h3>
                 <FontAwesomeIcon
                   icon={faLocationDot}
@@ -38,18 +38,27 @@ export default function Footer() {
             </li>
           </ul>
           <div className="mb-2">
-            <h3 className="font-semibold mb-1">
+            <h3 className="font-semibold mb-2">
               تابعنا على مواقع التواصل الإجتماعى
             </h3>
             <ul className="flex gap-4 lg:text-white">
-              <li className="text-center bg-red-600 p-2">
-                <FontAwesomeIcon icon={faWhatsapp} className="w-4" />
+              <li className="flex justify-center items-center bg-red-600 p-2">
+                <FontAwesomeIcon
+                  icon={faWhatsapp}
+                  className="w-4 h-4 lg:w-6 lg:h-6"
+                />
               </li>
-              <li className="text-center bg-red-600 p-2">
-                <FontAwesomeIcon icon={faFacebook} className="w-4" />
+              <li className="flex justify-center items-center bg-red-600 p-2">
+                <FontAwesomeIcon
+                  icon={faFacebook}
+                  className="w-4 h-4 lg:w-6 lg:h-6"
+                />
               </li>
-              <li className="text-center bg-red-600 p-2">
-                <FontAwesomeIcon icon={faInstagram} className="w-4" />
+              <li className="flex justify-center items-center bg-red-600 p-2">
+                <FontAwesomeIcon
+                  icon={faInstagram}
+                  className="w-4 h-4 lg:w-6 lg:h-6"
+                />
               </li>
             </ul>
           </div>
@@ -75,7 +84,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="p-4 bg-black text-white text-sm text-center">
+      <div className="flex justify-center items-center p-4 bg-black text-white text-sm lg:text-lg lg:h-[55px] lg:bg-[#3D3D3D]">
         <p>©حقوق الطبع والنشر شركة الشروق 2024</p>
       </div>
     </footer>

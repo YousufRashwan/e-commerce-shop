@@ -1,4 +1,4 @@
-import { HomeContent, CategorySectionsType } from "@/app/lib/definitions";
+import { HomeContent } from "@/app/lib/definitions";
 
 export const homeContent: HomeContent = [
   {
@@ -30,6 +30,10 @@ export const homeContent: HomeContent = [
       },
       {
         src: "/kitchenAppliance/microWaveCover.webp",
+        alt: "kitchen appliance",
+      },
+      {
+        src: "/kitchenAppliance/electricGrillCover.webp",
         alt: "kitchen appliance",
       },
       {
@@ -73,6 +77,10 @@ export const homeContent: HomeContent = [
         src: "/homeAppliance/dishWashingMachine.webp",
         alt: "home appliance",
       },
+      {
+        src: "/homeAppliance/vacuumCleaner.webp",
+        alt: "home appliance",
+      },
     ],
   },
 ];
@@ -82,98 +90,3 @@ export const categoryLinks = [
   { name: "تلفيزيونات وشاشات", href: "/categories/tvAndScreens" },
   { name: "المطبخ والمنزل", href: "/categories/kitchenAppliance" },
 ];
-
-export const categoryPages: {
-  name: string;
-  href: string;
-  categorySections: CategorySectionsType;
-}[] = [
-  {
-    name: "أجهزة منزلية",
-    href: "/categories/homeAppliance",
-    categorySections: [
-      {
-        title: "تكييفات",
-        categories: [
-          {
-            image: "/categoryCarousel/airconditioners.png",
-            name: "1تكييف",
-          },
-          {
-            image: "/categoryCarousel/airconditioners.png",
-            name: "2تكييف",
-          },
-          {
-            image: "/categoryCarousel/airconditioners.png",
-            name: "3تكييف",
-          },
-        ],
-      },
-      {
-        title: "غسالات",
-        categories: [
-          {
-            image: "/categoryCarousel/homeAppliances.png",
-            name: "1غسالة",
-          },
-          {
-            image: "/categoryCarousel/homeAppliances.png",
-            name: "2غسالة",
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: "تلفيزيونات وشاشات",
-    href: "/categories/tvAndScreens",
-    categorySections: [
-      {
-        title: "تلفيزيونات",
-        categories: [
-          {
-            image: "/categoryCarousel/screens.png",
-            name: "1تلفيزيون",
-          },
-          {
-            image: "/categoryCarousel/screens.png",
-            name: "2تلفيزيون",
-          },
-          {
-            image: "/categoryCarousel/screens.png",
-            name: "3تلفيزيون",
-          },
-        ],
-      },
-      {
-        title: "شاشات",
-        categories: [
-          {
-            image: "/categoryCarousel/screens.png",
-            name: "1شاشة",
-          },
-          {
-            image: "/categoryCarousel/screens.png",
-            name: "2شاشة",
-          },
-        ],
-      },
-    ],
-  },
-];
-
-export function getCategoryLinks() {
-  const categoryLinks = categoryPages.map((categoryPage) => ({
-    name: categoryPage.name,
-    href: categoryPage.href,
-  }));
-  return categoryLinks;
-}
-
-export function getCategorySectionsByPathname(pathname: string) {
-  const categoryPage = categoryPages.find(
-    (categoryPage) => categoryPage.href === pathname
-  );
-  const categorySections = categoryPage?.categorySections;
-  return categorySections;
-}

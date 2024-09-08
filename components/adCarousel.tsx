@@ -12,7 +12,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export default function AdCarousel() {
+export default function AdCarousel({ images }: any) {
   const plugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
@@ -25,16 +25,16 @@ export default function AdCarousel() {
         loop: true,
       }}
       plugins={[plugin.current]}
-      onMouseEnter={plugin.current.stop}
-      onMouseLeave={plugin.current.reset}
+      // onMouseEnter={plugin.current.stop}
+      // onMouseLeave={plugin.current.reset}
     >
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
-          <CarouselItem key={index} className="basis-full">
+        {images.map((image: any) => (
+          <CarouselItem key={image.id} className="basis-full">
             <Image
-              src={`/adCarousel/carousel-item-${index + 1}.png`}
+              src={`https:${image.src}`}
               className="object-cover object-center w-full h-[180px] md:h-[300px] md:rounded-xl lg:h-[400px]"
-              alt="El Shorouk"
+              alt={image.title}
               width="0"
               height="0"
               sizes="100vw"
