@@ -1,4 +1,4 @@
-import Sidenav from "@/components/categories/sidenav";
+import Sidenav from "@/components/categories/mobileNav/sidenav";
 
 export default function CategoriesLayout({
   children,

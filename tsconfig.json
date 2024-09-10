@@ -21,13 +21,11 @@
       "@/*": ["./*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "app/categories/[id]/page.jsx",
-    "components/categories/categoriesSection.tsx"
-  ],
+  // if something wrong happens, add these to include
+  /*
+  "app/categories/[id]/page.jsx",
+    "components/categories/subSubCat.tsx"
+  */
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

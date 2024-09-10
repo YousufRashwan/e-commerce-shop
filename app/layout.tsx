@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { Tajawal } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/navbar";
-import MobileNav from "@/components/mobileNav";
 
-// Import the Arabic font with fallback fonts
+import { Tajawal } from "next/font/google";
+
+import "./globals.css";
+
+import Navbar from "@/components/layout/navbar";
+import MobileNav from "@/components/layout/mobileNav";
+
 const tajawal = Tajawal({
   subsets: ["arabic"],
   weight: ["200", "300", "400", "500", "700", "800", "900"],

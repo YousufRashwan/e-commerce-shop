@@ -1,10 +1,9 @@
 import Searchbar from "@/components/searchbar";
-import AdCarouselGallery from "@/components/adCarouselGallery";
-import CategoryCarousel from "@/components/categoryCarousel";
-import HomeContTemp from "@/components/homeContTemp";
-import ProductsAccordion from "@/components/productsAccordion";
-import Brands from "@/components/brands";
-import Footer from "@/components/footer";
+import AdCarGallery from "@/components/adCarousel/gallery";
+import CatsCarousel from "@/components/categories/carousel/carousel";
+import Gallery from "@/components/galleries/galleries";
+import Accordion from "@/components/accordion/accordion";
+import Footer from "@/components/footer/footer";
 
 export default function Home() {
   return (
@@ -17,26 +16,23 @@ export default function Home() {
         </section>
         <section className="flex justify-center mt-2 mb-4">
           <div className="w-full px-4">
-            <AdCarouselGallery />
+            <AdCarGallery />
           </div>
         </section>
         <section className="flex overflow-hidden mb-8">
           <div className="w-full">
-            <CategoryCarousel />
+            <CatsCarousel />
           </div>
         </section>
         <section className="flex px-4 mb-8">
           <div className="w-full">
-            <HomeContTemp />
+            <Gallery />
           </div>
         </section>
         <section className="lg:hidden">
           <div className="bg-red-100">
-            <ProductsAccordion />
+            <Accordion />
           </div>
-        </section>
-        <section>
-          <Brands />
         </section>
       </div>
       <Footer />
