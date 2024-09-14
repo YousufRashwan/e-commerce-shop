@@ -3,7 +3,7 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
 import SubSubCats from "@/components/categories/desktop/categories/subSubCats";
 
-import { getSubCatsByCatId } from "@/lib/data";
+import { getSubCatsByCatId } from "@/lib/contentful/data";
 
 export default async function SubCats({ catId }: { catId: string }) {
   const subCats = await getSubCatsByCatId(catId);

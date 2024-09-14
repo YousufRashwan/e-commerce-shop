@@ -2,7 +2,7 @@ import SubCats from "@/components/categories/desktop/categories/subCats";
 
 import Image from "next/image";
 
-import { getCats } from "@/lib/data";
+import { getCats } from "@/lib/contentful/data";
 
 export default async function Navbar() {
   const cats = await getCats();

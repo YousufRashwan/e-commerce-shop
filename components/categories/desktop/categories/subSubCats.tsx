@@ -1,4 +1,4 @@
-import { getSubSubCatsBySubCatId } from "@/lib/data";
+import { getSubSubCatsBySubCatId } from "@/lib/contentful/data";
 
 export default async function SubSubCat({ subCatId }: { subCatId: string }) {
   const subSubCats = await getSubSubCatsBySubCatId(subCatId);

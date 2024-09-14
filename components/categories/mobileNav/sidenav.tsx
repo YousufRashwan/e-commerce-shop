@@ -1,6 +1,6 @@
 import NavLink from "@/components/categories/mobileNav/sidenavLink";
 
-import { getCats } from "@/lib/data";
+import { getCats } from "@/lib/contentful/data";
 
 export default async function Sidenav() {
   const cats = await getCats();

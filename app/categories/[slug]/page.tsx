@@ -1,6 +1,6 @@
 import SubCat from "@/components/categories/categories/subCat";
 
-import { client, getCatBySlug, getSubCatsByCatId } from "@/lib/data";
+import { client, getCatBySlug, getSubCatsByCatId } from "@/lib/contentful/data";
 
 export async function generateStaticParams() {
   const { items: cats } = await client.getEntries({

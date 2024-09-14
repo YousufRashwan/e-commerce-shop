@@ -1,6 +1,6 @@
 import SubCats from "@/components/footer/categories/subCats";
 
-import { getCats } from "@/lib/data";
+import { getCats } from "@/lib/contentful/data";
 
 export default async function Cats() {
   const cats = await getCats();

@@ -3,9 +3,10 @@ import SubSubCat from "@/components/categories/categories/subSubCat";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 
-import { getSubSubCatsBySubCatId } from "@/lib/data";
+import { getSubSubCatsBySubCatId } from "@/lib/contentful/data";
+import { SubCatsEntry } from "@/lib/contentful/types";
 
-export default async function SubCat({ subCat }: any) {
+export default async function SubCat({ subCat }: { subCat: SubCatsEntry }) {
   const { id } = subCat.sys;
   const { subCategoriesTitle: title } = subCat.fields;
 
