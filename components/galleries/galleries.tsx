@@ -7,11 +7,9 @@ export default async function Galleries() {
 
   return (
     <>
-      {galleries.map((gallery: any) => {
-        const { id } = gallery.sys;
-        const { galleryPhotos } = gallery.fields;
-        return <Gallery key={id} photos={galleryPhotos} />;
-      })}
+      {galleries.map((gallery) => (
+        <Gallery key={gallery.id} gallery={gallery} />
+      ))}
     </>
   );
 }

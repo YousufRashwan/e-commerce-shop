@@ -12,7 +12,11 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export default function AdCarousel({ images }: any) {
+import { Gallery } from "@/lib/definitions";
+
+export default function AdCarousel({ gallery }: { gallery: Gallery }) {
+  const { urls } = gallery;
+
   const plugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
@@ -29,16 +33,13 @@ export default function AdCarousel({ images }: any) {
       // onMouseLeave={plugin.current.reset}
     >
       <CarouselContent>
-        {images.map((image: any) => {
-          const { id } = image.sys;
-          const { title } = image.fields;
-          const { url } = image.fields.file;
+        {urls.map((url) => {
           return (
-            <CarouselItem key={id} className="basis-full">
+            <CarouselItem key={url} className="basis-full">
               <Image
                 src={`https:${url}`}
                 className="object-cover object-center w-full h-[180px] md:h-[300px] md:rounded-xl lg:h-[400px]"
-                alt={title}
+                alt={""}
                 width="0"
                 height="0"
                 sizes="100vw"

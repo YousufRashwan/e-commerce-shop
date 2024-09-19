@@ -9,9 +9,8 @@ export default async function cats() {
 
   return (
     <>
-      {cats.map((cat: any) => {
-        const { categoryPageName: title } = cat.fields;
-        const { id } = cat.sys;
+      {cats.map((cat) => {
+        const { id, title } = cat;
         return (
           <AccordionItem key={id} value={title} className="px-4">
             <AccordionTrigger>{title}</AccordionTrigger>

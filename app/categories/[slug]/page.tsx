@@ -1,14 +1,18 @@
 import SubCat from "@/components/categories/categories/subCat";
 
-import { client, getCatBySlug, getSubCatsByCatId } from "@/lib/contentful/data";
+import {
+  getCats,
+  getCatBySlug,
+  getSubCatsByCatId,
+} from "@/lib/contentful/data";
+
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const { items: cats } = await client.getEntries({
-    content_type: "productCategories",
-  });
+  const cats = await getCats();
 
   return cats.map((cat) => ({
-    slug: cat.fields.categoryPageSlug,
+    slug: cat.slug,
   }));
 }
 
@@ -19,13 +23,16 @@ export default async function CategorySections({
 }) {
   const slug = params.slug;
   const cat = await getCatBySlug(slug);
-  const catId = cat.sys.id;
+  if (!cat) {
+    notFound();
+  }
+  const catId = cat.id;
   const subCats = await getSubCatsByCatId(catId);
 
   return (
     <div className="px-4">
       {subCats.map((subCat) => (
-        <SubCat key={subCat.sys.id} subCat={subCat} />
+        <SubCat key={subCat.id} subCat={subCat} />
       ))}
     </div>
   );

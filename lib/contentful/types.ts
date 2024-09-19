@@ -1,45 +1,99 @@
 import * as contentful from "contentful";
 
-export type Cats = {
+// Types used to handle Contenful API Fetch
+
+// Common Fields Between Categories Types
+
+interface CommonFields {
+  title: contentful.EntryFieldTypes.Text;
+  slug: contentful.EntryFieldTypes.Text;
+  image: contentful.AssetLink;
+}
+
+// Category Type
+
+export interface Cat extends CommonFields {
   contentTypeId: "productCategories";
-  fields: {
-    categoryPageName: contentful.EntryFieldTypes.Text;
-    categoryPageSlug: contentful.EntryFieldTypes.Text;
-    image: contentful.EntryFieldTypes.AssetLink;
-  };
-};
+  fields: CommonFields;
+}
 
-export type SubCats = {
+export type CatEntry = contentful.Entry<Cat, undefined, string>;
+
+// Subcategory Type
+
+interface SubCatFields extends CommonFields {
+  catRef: contentful.EntryFieldTypes.EntryLink<Cat>;
+}
+
+export interface SubCat {
   contentTypeId: "subCategoriesTitle";
-  fields: {
-    subCategoriesTitle: contentful.EntryFieldTypes.Text;
-    mainCategoryReference: contentful.EntryFieldTypes.EntryLink<Cats>;
-  };
-};
+  fields: SubCatFields;
+}
 
-export type SubCatsEntry = contentful.Entry<SubCats, undefined, string>;
+export type SubCatEntry = contentful.Entry<SubCat, undefined, string>;
 
-export type SubSubCats = {
+// Sub-Subcategory Type
+
+interface SubSubCatFields extends CommonFields {
+  subCatRef: contentful.EntryFieldTypes.EntryLink<SubCat>;
+}
+
+export interface SubSubCat {
   contentTypeId: "subCategories";
+  fields: SubSubCatFields;
+}
+
+export type SubSubCatEntry = contentful.Entry<SubSubCat, undefined, string>;
+
+// Galleries Types
+
+type Asset = {
   fields: {
-    subCategoryName: contentful.EntryFieldTypes.Text;
-    subCategoryImage: contentful.EntryFieldTypes.AssetLink;
-    subCategoryTitleReference: contentful.EntryFieldTypes.EntryLink<SubCats>;
+    file: {
+      url: string;
+    };
   };
 };
 
-export type SubSubCatEntry = contentful.Entry<SubSubCats, undefined, string>;
+interface ImagesFields {
+  fields: {
+    images: Asset[];
+  };
+}
 
-export type HomePageGalleries = {
+export interface HomePageGallery extends ImagesFields {
   contentTypeId: "homePageGallery";
-  fields: {
-    galleryPhotos: contentful.EntryFieldTypes.Array<contentful.EntryFieldTypes.AssetLink>;
-  };
-};
+}
 
-export type AdGallery = {
+export interface AdGallery extends ImagesFields {
   contentTypeId: "carouselGallery";
+}
+
+export interface GalleryEntry extends ImagesFields {
+  sys: contentful.EntrySys;
+}
+
+// Products Type
+
+interface Brand {
+  contentTypeId: "brand";
   fields: {
-    carouselImages: contentful.EntryFieldTypes.Array<contentful.EntryFieldTypes.AssetLink>;
+    title: string;
   };
-};
+}
+
+type BrandEntry = contentful.Entry<Brand, undefined, string>;
+
+interface ProductFields extends CommonFields {
+  price: contentful.EntryFieldTypes.Number;
+  subSubCatRef: contentful.EntryFieldTypes.EntryLink<SubSubCat>;
+  brand: BrandEntry;
+  overview: contentful.EntryFieldTypes.Text[];
+}
+
+export interface Product {
+  contentTypeId: "products";
+  fields: ProductFields;
+}
+
+export type ProductEntry = contentful.Entry<Product, undefined, string>;

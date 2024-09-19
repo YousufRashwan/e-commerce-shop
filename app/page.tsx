@@ -1,6 +1,6 @@
 import Searchbar from "@/components/searchbar";
 import AdCarGallery from "@/components/adCarousel/gallery";
-import CatsCarousel from "@/components/categories/carousel/carousel";
+import CatsCarousel from "@/components/categories/carousel/subCats";
 import Gallery from "@/components/galleries/galleries";
 import Accordion from "@/components/accordion/accordion";
 import Footer from "@/components/footer/footer";
