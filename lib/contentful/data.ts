@@ -11,6 +11,7 @@ import {
   Gallery,
   Product,
   ProductPage,
+  Ad,
 } from "@/lib/definitions";
 
 // Data fetch calls from Contentful API
@@ -91,14 +92,6 @@ export async function getHomePageGalleries(): Promise<Gallery[]> {
       content_type: "homePageGallery",
     });
   return galleries ? utils.formattedGalleries(galleries) : galleries;
-}
-
-export async function getAdGallery(): Promise<Gallery> {
-  const { items: galleries } =
-    await client.getEntries<ContentfulTypes.AdGallery>({
-      content_type: "carouselGallery",
-    });
-  return galleries[0] ? utils.formattedGallery(galleries[0]) : galleries[0];
 }
 
 // Products Data
@@ -182,4 +175,15 @@ export async function getProductBySlug(slug: string): Promise<Product> {
   });
 
   return products[0] ? utils.formattedProduct(products[0]) : products[0];
+}
+
+// Ad Data
+
+export async function getAds(): Promise<Ad[]> {
+  const { items: ads } =
+    await client.withoutUnresolvableLinks.getEntries<ContentfulTypes.Ad>({
+      content_type: "adCarouselImage",
+    });
+
+  return utils.formattedAds(ads);
 }

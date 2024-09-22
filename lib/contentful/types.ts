@@ -45,33 +45,52 @@ export interface SubSubCat {
 
 export type SubSubCatEntry = contentful.Entry<SubSubCat, undefined, string>;
 
-// Galleries Types
+// Image Assets Type
 
-type Asset = {
-  fields: {
-    file: {
-      url: string;
-    };
+interface AssetFields {
+  title: string;
+  file: {
+    url: string;
   };
-};
+}
+
+// Home Page Galleries Types
 
 interface ImagesFields {
-  fields: {
-    images: Asset[];
-  };
+  images: {
+    fields: AssetFields;
+  }[];
 }
 
-export interface HomePageGallery extends ImagesFields {
+// fix the below type by adding real types from contentful and resolve them
+export interface HomePageGallery {
   contentTypeId: "homePageGallery";
+  fields: ImagesFields;
 }
 
-export interface AdGallery extends ImagesFields {
-  contentTypeId: "carouselGallery";
-}
-
-export interface GalleryEntry extends ImagesFields {
+export interface GalleryEntry {
   sys: contentful.EntrySys;
+  fields: ImagesFields;
 }
+
+// Ad Type
+
+interface AdFields {
+  title: contentful.EntryFieldTypes.Text;
+  image: contentful.AssetLink;
+  categoryReference: contentful.ResolvedEntryLink<
+    contentful.ChainModifiers,
+    contentful.LocaleCode,
+    Cat | SubCat | SubSubCat
+  >;
+}
+
+export interface Ad {
+  contentTypeId: "adCarouselImage";
+  fields: AdFields;
+}
+
+export type AdEntry = contentful.Entry<Ad, undefined, string>;
 
 // Products Type
 

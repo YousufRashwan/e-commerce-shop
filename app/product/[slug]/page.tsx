@@ -4,6 +4,8 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 
+import Link from "next/link";
+
 export default async function Product({
   params,
 }: {
@@ -45,7 +47,7 @@ export default async function Product({
           </div>
           <div className="mb-4">
             <Button className="bg-red-700 text-white font-semibold ">
-              أطلب الأن
+              <Link href={`/product/${product.slug}/order`}>أطلب الأن</Link>
             </Button>
           </div>
         </div>

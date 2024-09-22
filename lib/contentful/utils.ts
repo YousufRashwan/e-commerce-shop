@@ -106,17 +106,21 @@ export function formattedGallery(
     sys: { id },
     fields: { images },
   } = gallery;
-  const formattedUrls = images.map((image) => {
+  const formattedImages = images.map((image) => {
     const {
       fields: {
+        title,
         file: { url },
       },
     } = image;
-    return url;
+    return {
+      url,
+      title,
+    };
   });
   const formattedHomePageGallery = {
     id,
-    urls: formattedUrls,
+    images: formattedImages,
   };
   return formattedHomePageGallery;
 }
@@ -174,4 +178,34 @@ export function formattedProduct(product: ContentfulTypes.ProductEntry) {
 
 export function formattedProducts(products: ContentfulTypes.ProductEntry[]) {
   return products.map((product) => formattedProduct(product));
+}
+
+// Ads Data Formatters
+
+export function formattedAd(ad: ContentfulTypes.AdEntry) {
+  const {
+    sys: { id },
+    fields: {
+      title,
+      image: {
+        fields: {
+          file: { url },
+        },
+      },
+      categoryReference: {
+        fields: { slug },
+      },
+    },
+  } = ad;
+  const formattedAd = {
+    id,
+    title,
+    url,
+    slug,
+  };
+  return formattedAd;
+}
+
+export function formattedAds(ads: ContentfulTypes.AdEntry[]) {
+  return ads.map((ad) => formattedAd(ad));
 }

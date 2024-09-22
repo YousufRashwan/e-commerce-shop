@@ -4,6 +4,8 @@ import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 
+import Link from "next/link";
+
 import {
   Carousel,
   CarouselContent,
@@ -12,11 +14,9 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import { Gallery } from "@/lib/definitions";
+import { Ad } from "@/lib/definitions";
 
-export default function AdCarousel({ gallery }: { gallery: Gallery }) {
-  const { urls } = gallery;
-
+export default function AdCarousel({ ads }: { ads: Ad[] }) {
   const plugin = React.useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
@@ -33,17 +33,27 @@ export default function AdCarousel({ gallery }: { gallery: Gallery }) {
       // onMouseLeave={plugin.current.reset}
     >
       <CarouselContent>
-        {urls.map((url) => {
+        {ads.map((ad) => {
           return (
-            <CarouselItem key={url} className="basis-full">
-              <Image
-                src={`https:${url}`}
-                className="object-cover object-center w-full h-[180px] md:h-[300px] md:rounded-xl lg:h-[400px]"
-                alt={""}
-                width="0"
-                height="0"
-                sizes="100vw"
-              />
+            <CarouselItem
+              key={ad.url}
+              className="basis-full text-center relative"
+            >
+              <Link href={`/sub-category/${ad.slug}`}>
+                <Image
+                  src={`https:${ad.url}`}
+                  alt={ad.title}
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  className="object-cover object-center w-full h-[180px] md:h-[300px] md:rounded-xl lg:h-[400px]"
+                />
+                <div className="absolute w-full top-5 flex justify-center text-center">
+                  <div className="bg-red-500 bg-opacity-50 text-white py-4 px-2 rounded-lg border border-white text-xl font-semibold md:text-2xl md:bg-opacity-60 md:p-6  lg:text-3xl lg:bg-opacity-70 lg:p-8">
+                    <div>{ad.title}</div>
+                  </div>
+                </div>
+              </Link>
             </CarouselItem>
           );
         })}

@@ -7,7 +7,7 @@ interface CommonFields {
   url: string;
 }
 
-// Categories Types
+// Categories Data Types
 
 export interface Cat extends CommonFields {}
 
@@ -23,10 +23,13 @@ export interface SubSubCat extends CommonFields {
 
 export interface Gallery {
   id: string;
-  urls: string[];
+  images: {
+    url: string;
+    title: string;
+  }[];
 }
 
-// Product Type
+// Product Data Type
 
 export interface Product extends CommonFields {
   price: number;
@@ -42,4 +45,19 @@ export interface Product extends CommonFields {
 export interface ProductPage {
   title: string;
   products: Product[];
+}
+
+// Order Data Types
+
+export interface OrderFormData {
+  phoneNumber: string;
+  email: string;
+  name: string;
+}
+
+export interface Ad {
+  id: string;
+  title: string;
+  url: string;
+  slug: string;
 }
