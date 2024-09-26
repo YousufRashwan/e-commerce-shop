@@ -31,6 +31,8 @@ export function formattedCats(cats: ContentfulTypes.CatEntry[]): Cat[] {
   return cats.map((cat) => formattedCat(cat));
 }
 
+// Subcategory Formatters
+
 export function formattedSubCat(subCat: ContentfulTypes.SubCatEntry): SubCat {
   const {
     sys: { id },
@@ -62,6 +64,8 @@ export function formattedSubCats(
 ): SubCat[] {
   return subCats.map((subCat) => formattedSubCat(subCat));
 }
+
+// Further Subcategory Formatters
 
 export function formattedSubSubCat(
   subSubCat: ContentfulTypes.SubSubCatEntry

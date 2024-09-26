@@ -13,7 +13,8 @@ import { usePathname } from "next/navigation";
 
 export default function MobileNav() {
   let pathname = usePathname();
-  pathname = `/${pathname.split("/")[1]}`;
+
+  const slug = `/${pathname.split("/")[1]}`;
   const links = [
     {
       href: "/",
@@ -43,11 +44,11 @@ export default function MobileNav() {
         <div className="flex flex-col items-center gap-1 text-gray-700">
           <FontAwesomeIcon
             icon={link.icon}
-            className={`w-6 h-6 ${pathname === link.href && "text-red-500"} `}
+            className={`w-6 h-6 ${slug === link.href && "text-red-500"} `}
           />
           <div
             className={`text-xs font-medium ${
-              pathname === link.href && "text-red-500"
+              slug === link.href && "text-red-500"
             }`}
           >
             {link.text}
