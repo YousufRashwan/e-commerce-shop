@@ -5,7 +5,7 @@ import SubCats from "@/components/accordion/categories/subCats";
 import { getCats } from "@/lib/contentful/data";
 
 export default async function cats() {
-  const cats = await getCats();
+  const cats = (await getCats()).slice(0, 4);
 
   return (
     <>

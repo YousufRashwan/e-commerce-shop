@@ -21,7 +21,7 @@ export default async function SubSubCat({
               width="0"
               height="0"
               sizes="100vw"
-              className="w-auto h-auto"
+              className="w-auto h-auto max-w-full max-h-full"
             />
           </div>
           <span className="text-[#666666]">{title}</span>

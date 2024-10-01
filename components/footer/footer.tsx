@@ -38,21 +38,21 @@ export default function Footer() {
                     icon={faPhone}
                     className="inline-block w-3"
                   />{" "}
-                  01281426037
+                  01222222222
                 </li>
                 <li className="mb-1">
                   <FontAwesomeIcon
                     icon={faPhone}
                     className="inline-block w-3"
                   />{" "}
-                  01281426037
+                  01222222222
                 </li>
                 <li>
                   <FontAwesomeIcon
                     icon={faWhatsapp}
                     className="inline-block w-3"
                   />{" "}
-                  01281426037
+                  01222222222
                 </li>
               </ul>
             </div>
@@ -82,7 +82,7 @@ export default function Footer() {
                   icon={faLocationDot}
                   className=" inline-block w-3"
                 />{" "}
-                بجوار بنك اسكندرية الجديد، ههيا، الشرقية، مصر{" "}
+                بجوار بنك اسكندرية الجديد، ...، ........، مصر{" "}
                 <span className="text-red-600">عرض علي الخريطة</span>
               </h3>
               <ul className="mb-2 text-base">
@@ -91,21 +91,21 @@ export default function Footer() {
                     icon={faPhone}
                     className="inline-block w-3"
                   />{" "}
-                  01281426037
+                  01222222222
                 </li>
                 <li className="mb-1">
                   <FontAwesomeIcon
                     icon={faPhone}
                     className="inline-block w-3"
                   />{" "}
-                  01281426037
+                  01222222222
                 </li>
                 <li>
                   <FontAwesomeIcon
                     icon={faWhatsapp}
                     className="inline-block w-3"
                   />{" "}
-                  01281426037
+                  01222222222
                 </li>
               </ul>
             </div>

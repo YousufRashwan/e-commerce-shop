@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center h-[calc(calc(100vh)-150px)] bg-gray-100">
-      <h1 className="text-4xl font-bold text-gray-800 mt-8 text-center">
+    <div className="flex flex-col items-center justify-center h-[calc(calc(100vh)-150px)] bg-gray-100 text-center">
+      <h1 className="text-4xl font-bold text-gray-800 mt-8">
         عفواً، لم يتم العثور على الصفحة
       </h1>
       <p className="text-lg text-gray-600 mt-4">

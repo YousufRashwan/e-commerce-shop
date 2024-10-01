@@ -49,7 +49,7 @@ export default function AdCarousel({ ads }: { ads: Ad[] }) {
                   className="object-cover object-center w-full h-[180px] md:h-[300px] md:rounded-xl lg:h-[400px]"
                 />
                 <div className="absolute w-full top-5 flex justify-center text-center">
-                  <div className="bg-red-500 bg-opacity-50 text-white py-4 px-2 rounded-lg border border-white text-xl font-semibold md:text-2xl md:bg-opacity-60 md:p-6  lg:text-3xl lg:bg-opacity-70 lg:p-8">
+                  <div className="bg-red-500 bg-opacity-50 text-white py-4 px-2 rounded-lg border border-white text-sm font-semibold overflow-hidden md:text-2xl md:bg-opacity-60 md:p-6  lg:text-3xl lg:bg-opacity-70 lg:p-8">
                     <div>{ad.title}</div>
                   </div>
                 </div>

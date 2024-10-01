@@ -37,28 +37,37 @@ export default function Navbar() {
             icon={faMagnifyingGlass}
             className="block lg:hidden w-6 h-6"
           />
-          <div className="hidden lg:flex items-center gap-2 text-nowrap">
+          <Link
+            href="/account"
+            className="hidden lg:flex items-center gap-2 text-nowrap hover:text-red-600 transition-colors"
+          >
             <FontAwesomeIcon icon={faUser} className="w-6 h-6" />
             <div className="flex flex-col">
               <small>التسجيل</small>
               <strong>دخول \ إنشاء حساب</strong>
             </div>
-          </div>
-          <div className="flex items-center gap-2 text-nowrap">
+          </Link>
+          <Link
+            href="/wishlist"
+            className="flex items-center gap-2 text-nowrap hover:text-red-600 transition-colors"
+          >
             <FontAwesomeIcon icon={faHeart} className="w-6 h-6" />
             <div className="hidden lg:flex flex-col">
               <small>المفضلة</small>
               <strong>قائمة الأمنيات</strong>
             </div>
-          </div>
-          <div className="hidden lg:flex items-center gap-2 text-nowrap">
+          </Link>
+          <Link
+            href="/cart"
+            className="hidden lg:flex items-center gap-2 text-nowrap hover:text-red-600 transition-colors"
+          >
             <FontAwesomeIcon icon={faCartShopping} className="w-6 h-6" />
 
             <div className="flex flex-col">
               <small>سلة المشتريات</small>
               <strong>0.00</strong>
             </div>
-          </div>
+          </Link>
         </div>
       </nav>
       <div className="hidden lg:block bg-gray-100">

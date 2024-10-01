@@ -3,8 +3,7 @@ import SubCats from "@/components/footer/categories/subCats";
 import { getCats } from "@/lib/contentful/data";
 
 export default async function Cats() {
-  const cats = await getCats();
-
+  const cats = (await getCats()).slice(0, 4);
   return (
     <div className="hidden lg:grid grid-cols-4 gap-10">
       {cats.map((cat) => {

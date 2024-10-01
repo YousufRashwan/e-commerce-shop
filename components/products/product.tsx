@@ -6,18 +6,17 @@ export default function Product({ product }: { product: ProductType }) {
   const { title, url, price } = product;
   return (
     <div className="bg-white border rounded-md p-4">
-      <div className="h-[180px] flex items-center overflow-hidden">
+      <div className="h-[180px] flex items-center justify-center overflow-hidden">
         <Image
           src={`https:${url}`}
           alt={title}
-          height="0"
-          width="0"
-          sizes="100vh"
-          className="h-auto w-full"
+          height={product.details.width}
+          width={product.details.height}
+          className="max-h-full w-auto"
         />
       </div>
       <h3 className="text-sm font-normal text-ellipsis line-clamp-2">
-        غسالة أطباق وايت بوينت 10 افرد، 45 سم، 5 برامج، فضي، WPD 105 DS
+        {title}
       </h3>
       <span className="text-red-700 text-xl font-bold">{price} جنيه</span>
     </div>
