@@ -1,27 +1,34 @@
 "use client";
 
-import React, { useState } from "react";
-import { isValidEgyptianPhoneNumber } from "@/lib/utils";
-import { OrderFormData } from "@/lib/definitions";
-import { Button } from "@/components/ui/button";
-import emailjs from "emailjs-com"; // Import EmailJS
-
+import { useState } from "react";
 import { Product } from "@/lib/definitions";
 
+import { isValidEgyptianPhoneNumber } from "@/lib/utils";
+
 export default function OrderForm({ product }: { product: Product }) {
-  const [formData, setFormData] = useState<OrderFormData>({
+  const [formData, setFormData] = useState({
     phoneNumber: "",
     email: "",
     name: "",
   });
 
   const [phoneNumberError, setPhoneNumberError] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleChange = (e: any) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const fullFormData = {
+      ...formData,
+      productName: product.title,
+      productPrice: product.price,
+    };
 
     if (!isValidEgyptianPhoneNumber(formData.phoneNumber)) {
       setPhoneNumberError(true);
@@ -29,41 +36,26 @@ export default function OrderForm({ product }: { product: Product }) {
     }
 
     setPhoneNumberError(false);
-    setIsSubmitting(true);
 
-    const serviceID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string;
-    const templateID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string;
-    const userID = process.env.NEXT_PUBLIC_EMAILJS_USER_ID as string;
+    const res = await fetch("/api/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(fullFormData),
+    });
 
-    const templateParams: Record<string, unknown> = {
-      phoneNumber: formData.phoneNumber,
-      email: formData.email,
-      name: formData.name,
-      productName: product.title,
-      productPrice: product.price,
-    };
+    if (!res.ok) {
+      alert("error");
+    }
 
-    emailjs
-      .send(serviceID, templateID, templateParams, userID)
-      .then(() => {
-        setSuccessMessage("تم إرسال الطلب بنجاح!");
-        setFormData({ phoneNumber: "", email: "", name: "" });
-      })
-      .catch((error) => {
-        setErrorMessage("حدث خطأ أثناء إرسال الطلب، حاول مرة أخرى.");
-        console.error("EmailJS error:", error);
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
-  };
+    const result = await res.json();
+    if (!result.success) {
+      alert(result.message);
+    }
+    console.log(result);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+    console.log(fullFormData);
   };
 
   return (
@@ -76,13 +68,15 @@ export default function OrderForm({ product }: { product: Product }) {
           type="tel"
           id="phoneNumber"
           name="phoneNumber"
+          required
           value={formData.phoneNumber}
           onChange={handleChange}
-          required
-          className="border p-2 w-72"
+          className={`border p-2 w-72 ${
+            phoneNumberError ? "border-red-500" : ""
+          }`}
         />
         {phoneNumberError && (
-          <span className="text-red-500 pr-4">رقم الهاتف غير صالح</span>
+          <p className="text-red-500">رقم الهاتف غير صالح</p>
         )}
       </div>
       <div>
@@ -93,9 +87,9 @@ export default function OrderForm({ product }: { product: Product }) {
           type="email"
           id="email"
           name="email"
+          required
           value={formData.email}
           onChange={handleChange}
-          required
           className="border p-2 w-72"
         />
       </div>
@@ -107,17 +101,41 @@ export default function OrderForm({ product }: { product: Product }) {
           type="text"
           id="name"
           name="name"
+          required
           value={formData.name}
           onChange={handleChange}
-          required
           className="border p-2 w-72"
         />
       </div>
-      <Button className="self-center w-72" disabled={isSubmitting}>
-        {isSubmitting ? "جارٍ الإرسال..." : "إرسال"}
-      </Button>
-      {successMessage && <p className="text-green-500">{successMessage}</p>}
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+      <input
+        type="hidden"
+        id="productName"
+        name="productName"
+        value={product.title}
+      />
+      <input
+        type="hidden"
+        id="productPrice"
+        name="productPrice"
+        value={product.price}
+      />
+      <button
+        type="submit"
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        Submit
+      </button>
     </form>
   );
+}
+
+{
+  /* {phoneNumberError && (
+          <span className="text-red-500 pr-4">رقم الهاتف غير صالح</span>
+        )} */
+}
+
+{
+  /* {successMessage && <p className="text-green-500">{successMessage}</p>}
+{errorMessage && <p className="text-red-500">{errorMessage}</p>} */
 }
