@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { Product } from "@/lib/definitions";
+import emailjs from "emailjs-com";
 
+import { useState } from "react";
+
+import { Product } from "@/lib/definitions";
 import { isValidEgyptianPhoneNumber } from "@/lib/utils";
+
+import { Button } from "../ui/button";
 
 export default function OrderForm({ product }: { product: Product }) {
   const [formData, setFormData] = useState({
@@ -13,6 +17,9 @@ export default function OrderForm({ product }: { product: Product }) {
   });
 
   const [phoneNumberError, setPhoneNumberError] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e: any) => {
     setFormData({
@@ -30,32 +37,36 @@ export default function OrderForm({ product }: { product: Product }) {
       productPrice: product.price,
     };
 
-    if (!isValidEgyptianPhoneNumber(formData.phoneNumber)) {
+    if (!isValidEgyptianPhoneNumber(fullFormData.phoneNumber)) {
       setPhoneNumberError(true);
       return;
     }
 
     setPhoneNumberError(false);
+    setIsSubmitting(true);
+    setSuccessMessage("");
+    setErrorMessage("");
 
-    const res = await fetch("/api/order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(fullFormData),
-    });
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        fullFormData,
+        process.env.NEXT_PUBLIC_EMAILJS_USER_ID
+      )
+      .then(() => {
+        setSuccessMessage("تم إرسال الطلب بنجاح!");
+        setFormData({ phoneNumber: "", email: "", name: "" });
+      })
+      .catch((error) => {
+        console.error("EmailJS error:", error);
+        setErrorMessage("حدث خطأ أثناء إرسال الطلب، حاول مرة أخرى.");
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
 
-    if (!res.ok) {
-      alert("error");
-    }
-
-    const result = await res.json();
-    if (!result.success) {
-      alert(result.message);
-    }
-    console.log(result);
-
-    console.log(fullFormData);
+    console.log("Submit: ", fullFormData);
   };
 
   return (
@@ -76,7 +87,7 @@ export default function OrderForm({ product }: { product: Product }) {
           }`}
         />
         {phoneNumberError && (
-          <p className="text-red-500">رقم الهاتف غير صالح</p>
+          <p className="text-red-500 pr-4">رقم الهاتف غير صالح</p>
         )}
       </div>
       <div>
@@ -119,23 +130,30 @@ export default function OrderForm({ product }: { product: Product }) {
         name="productPrice"
         value={product.price}
       />
-      <button
-        type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-      >
-        Submit
-      </button>
+      <Button className="self-center w-72" disabled={isSubmitting}>
+        {isSubmitting ? "جارٍ الإرسال..." : "إرسال"}
+      </Button>
+      {successMessage && <p className="text-green-500">{successMessage}</p>}
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
     </form>
   );
 }
 
-{
-  /* {phoneNumberError && (
-          <span className="text-red-500 pr-4">رقم الهاتف غير صالح</span>
-        )} */
-}
+// For server-side email sending (future use case)
 
-{
-  /* {successMessage && <p className="text-green-500">{successMessage}</p>}
-{errorMessage && <p className="text-red-500">{errorMessage}</p>} */
-}
+// const res = await fetch("/api/order", {
+//   method: "POST",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+//   body: JSON.stringify(fullFormData),
+// });
+
+// if (!res.ok) {
+//   alert("error");
+// }
+
+// const result = await res.json();
+// if (!result.success) {
+//   alert(result.message);
+// }
