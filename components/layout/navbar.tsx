@@ -37,7 +37,7 @@ export default function Navbar() {
             icon={faMagnifyingGlass}
             className="block lg:hidden w-6 h-6"
           />
-          <Link
+          {/* <Link
             href="/account"
             className="hidden lg:flex items-center gap-2 text-nowrap hover:text-red-600 transition-colors"
           >
@@ -46,7 +46,7 @@ export default function Navbar() {
               <small>التسجيل</small>
               <strong>دخول \ إنشاء حساب</strong>
             </div>
-          </Link>
+          </Link> */}
           <Link
             href="/wishlist"
             className="flex items-center gap-2 text-nowrap hover:text-red-600 transition-colors"
