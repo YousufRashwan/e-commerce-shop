@@ -114,12 +114,14 @@ export function formattedGallery(
     const {
       fields: {
         title,
+        description,
         file: { url },
       },
     } = image;
     return {
       url,
       title,
+      description,
     };
   });
   const formattedHomePageGallery = {

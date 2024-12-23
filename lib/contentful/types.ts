@@ -71,6 +71,7 @@ export interface HomePageGallery {
 export interface GalleryEntry {
   sys: contentful.EntrySys;
   fields: ImagesFields;
+  description: string;
 }
 
 // Ad Type
