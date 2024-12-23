@@ -12,7 +12,7 @@ export default async function Galleries({
       {galleries.map((gallery) => {
         const { images } = gallery;
         return (
-          <div className="w-full mb-12">
+          <div className="w-full mb-12" key={images[0].url}>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div className="col-span-2 md:col-span-3 row-span-2">
                 {/* <Image
