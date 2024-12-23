@@ -104,13 +104,14 @@ export function formattedSubSubCats(
 // Gallery Formatter
 
 export function formattedGallery(
-  gallery: ContentfulTypes.GalleryEntry
+  gallery: any
+  // : ContentfulTypes.GalleryEntry
 ): Gallery {
   const {
     sys: { id },
     fields: { images },
   } = gallery;
-  const formattedImages = images.map((image) => {
+  const formattedImages = images.map((image: any) => {
     const {
       fields: {
         title,
@@ -132,9 +133,10 @@ export function formattedGallery(
 }
 
 export function formattedGalleries(
-  galleries: ContentfulTypes.GalleryEntry[]
+  galleries: any
+  // : ContentfulTypes.GalleryEntry[]
 ): Gallery[] {
-  return galleries.map((gallery) => formattedGallery(gallery));
+  return galleries.map((gallery: any) => formattedGallery(gallery));
 }
 
 // Products Formatters

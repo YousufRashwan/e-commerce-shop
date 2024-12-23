@@ -26,7 +26,7 @@ export interface Gallery {
   images: {
     url: string;
     title: string;
-    description: string;
+    description: any;
   }[];
 }
 
