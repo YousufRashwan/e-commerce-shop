@@ -49,6 +49,7 @@ export type SubSubCatEntry = contentful.Entry<SubSubCat, undefined, string>;
 
 interface AssetFields {
   title: string;
+  description: string;
   file: {
     url: string;
   };
